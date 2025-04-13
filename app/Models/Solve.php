@@ -2,20 +2,27 @@
 
 namespace App\Models;
 
-use App\Http\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
 
 class Solve extends Model
 {
-    use HasFactory,Uuid;
+    use HasFactory;
     protected $fillable = [
-        'uuid',
         'participant_id',
         'problem_id',
         'file',
         'status'
     ];
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->uuid = str::uuid();
+        });
+    }
     public function participant()
     {
         return $this->belongsTo(Participant::class);
