@@ -10,7 +10,7 @@ class Team extends Model
 {
     use HasFactory,Uuid;
     protected $fillable=[
-        'uuid','name','score'
+        'uuid','name'
     ];
     public function participants()
     {

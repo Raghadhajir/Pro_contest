@@ -21,8 +21,5 @@ class Participant extends Model
     {
         return $this->belongsTo(Contest::class );
     }
-    public function solves()
-    {
-        return $this->hasMany(Solve::class);
-    }
+   
 }

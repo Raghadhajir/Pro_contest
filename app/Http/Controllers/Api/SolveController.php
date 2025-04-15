@@ -27,33 +27,10 @@ class SolveController extends Controller
             return $this->apiResponse(null, false, $error, 400);
         }
         $userid = auth()->user()->id;
-        $participant = Participant::where('participant_id', $userid)->first();
-        if ($participant) {
-            $problemId = Problem::where('uuid', $request->problem_id)->first();
-            $contestId = $problemId->contest_id;
-            $contestId2 = $participant->contest_id;
-            if ($contestId == $contestId2) {
-                $coach = User::where('id', $userid)->first();
-                if ($coach->is_coach == 1) {
-                    $participantId = $coach->team_id;
-                } else {
-                    $participantId = $userid;
-                }
-                // dd($participantId);
-
-            } else {
-                return $this->apiResponse(null, false, 'لست مشترك بالمسابقة', 200);
-
-            }
-        } else {
-            return $this->apiResponse(null, false, 'لست مشترك بالمسابقة', 200);
-        }
-
-
         $d = $request->file('solve_file')->store('files', 'public');
         // dd($participant->id);
         $solve = Solve::create([
-            'participant_id' => $participant->id,
+            'user_id' => $userid,
             'problem_id' => Problem::where('uuid', $request->problem_id)->pluck('id')->first(),
             'file' => $d,
         ]);

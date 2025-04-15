@@ -8,18 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Problem extends Model
 {
-    use HasFactory,Uuid;
+    use HasFactory, Uuid;
     protected $fillable = [
         'uuid',
         'title',
         'description',
         'file',
-        'contest_id'
     ];
-    public function contest()
-    {
-        return $this->belongsTo(Contest::class);
-    }
     public function solves()
     {
         return $this->hasMany(Solve::class);

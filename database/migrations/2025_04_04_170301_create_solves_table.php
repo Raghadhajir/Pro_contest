@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('solves', function (Blueprint $table) {
             $table->id();
             $table->uuid();
-            $table->foreignId('participant_id')->constrained('participants')->onDelete('cascade');
-            $table->foreignId('problem_id')->constrained('problems')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('problem_id')->constrained('problems')->onDelete('cascade')->onUpdate('cascade');
             $table->string('file');
             $table->enum('status',['accepted','process','reject','pending'])->default('pending');
             $table->timestamps();

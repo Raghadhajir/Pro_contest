@@ -17,7 +17,7 @@ class SolveResource extends JsonResource
     {
         return [
             'id' => $this->uuid,
-            'Participant_id' => $this->participant?->participant_id,
+            'user_id' => $this->user?->id,
             'problem_id' => $this->problem?->title,
             'file' => env('PATH_IMG') . $this->file,
         ];

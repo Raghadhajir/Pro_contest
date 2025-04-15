@@ -11,7 +11,7 @@ class Solve extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'participant_id',
+        'user_id',
         'problem_id',
         'file',
         'status'
@@ -23,9 +23,9 @@ class Solve extends Model
             $model->uuid = str::uuid();
         });
     }
-    public function participant()
+    public function user()
     {
-        return $this->belongsTo(Participant::class);
+        return $this->belongsTo(User::class);
     }
     public function problem()
     {

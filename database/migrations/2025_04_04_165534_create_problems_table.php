@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('file');
-            $table->foreignId('contest_id')->constrained('contests')->onDelete('cascade');
             $table->timestamps();
         });
     }
