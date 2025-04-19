@@ -14,6 +14,7 @@ class Problem extends Model
         'title',
         'description',
         'file',
+        'level'
     ];
     public function solves()
     {
