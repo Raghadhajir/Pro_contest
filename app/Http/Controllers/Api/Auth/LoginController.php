@@ -24,11 +24,12 @@ class LoginController extends Controller
              return $this->apiResponse(null,false,$error,400);
         }
         $user = User::where('email', '=', $request->email)->first();
-
+// dd($user);
         if (!$user) {
             $error = 'your email or password not found';
             return $this->apiResponse(null, false, $error, 404);
         }
+
         if (Hash::check($request->password, $user->password)) {
             $data["user"] = LoginResource::make($user);
             $token = $user->createToken('customer')->plainTextToken;

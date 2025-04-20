@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\ContestController;
 use App\Http\Controllers\Api\SolveController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,8 +23,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/login', [LoginController::class, 'login']);
+Route::post('/register', [RegisterController::class, 'register']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::post('/uploadsolve', [SolveController::class, 'uploadsolve']);
 });
+
+// user
+Route::middleware(['auth:sanctum', 'IsUser'])->group(function () {
+    Route::post('/uploadsolve', [SolveController::class, 'uploadsolve']);
+    Route::get('/userProfile', [UserController::class, 'userProfile']);
+});
+
+//coach
+Route::middleware(['auth:sanctum', 'IsCoach'])->group(function () {
+    Route::get('/coachProfile', [UserController::class, 'coachProfile']);
+
+});
+Route::get('/DateContest', [ContestController::class, 'DateContest']);
+
