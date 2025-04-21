@@ -14,13 +14,12 @@ class UserController extends Controller
     public function showStudent()
     {
         $students = User::where('is_coach',0)->get();
-        // $students = User::all();
         return view('panel.dashboard.student.show',['students'=>$students]);
     }
     public function coachShow()
     {
-        $coachs = User::where('is_coach',1)->get();
-        return view('panel.dashboard.coach.show',['coachs' => $coachs]);
+        $coaches = User::where('is_coach',1)->get();
+        return view('panel.dashboard.coach.show',['coaches' => $coaches]);
     }
     public function addStudent(Request $request)
     {

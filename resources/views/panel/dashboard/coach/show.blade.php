@@ -6,111 +6,139 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Students</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f0fafa;
-      padding: 20px;
+      font-family: 'Inter', sans-serif;
+      background-color: #f1f7f9;
+      margin: 0;
+      padding: 2rem;
     }
+    .all {
+        margin-top: 100px;
+        margin-right: 100px;
+        margin-left: auto;
+    }
+
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 40px;
+      margin-bottom: 2rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .header h2 {
-      color: #1f3c7d;
+      color: #004080;
       margin: 0;
     }
 
     .add-button {
-      background-color: #1f3c7d;
+      background-color: #007bff;
       color: white;
-      padding: 10px 20px;
+      padding: 10px 15px;
       border: none;
-      border-radius: 8px;
+      border-radius: 5px;
       font-size: 14px;
       cursor: pointer;
-      letter-spacing: 1px;
     }
-    .all {
-    margin-right: 500px;
-    margin-left: 500px;
-    margin-top: 100px;
+
+    .students-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
     }
-    h2 {
-      color:rgb(2, 66, 130);
-    }
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      /* margin: 100px; */
-    }
-    .card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(75, 111, 255, 0.6);
-      width: 200px;
-      padding: 15px;
+
+    .student-card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgb(21, 65, 243);
+      padding: 1rem;
       text-align: center;
     }
-    .card img {
+
+    .student-card img {
       width: 100%;
-      height: 150px;
+      border-radius: 12px;
+      height: 180px;
       object-fit: cover;
-      border-radius: 10px;
     }
-    .name {
-      font-size: 18px;
-      font-weight: bold;
+
+    .student-card h3 {
       margin: 10px 0 5px;
+      font-size: 18px;
     }
-    .info {
+
+    .student-info {
       font-size: 14px;
       color: #555;
-      margin: 5px 0;
+      margin-bottom: 5px;
     }
+
     .score {
       font-weight: bold;
-      color: red;
+      color: #d00;
       margin-top: 10px;
+      font-size: 16px;
+    }
+
+    .card-actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .card-actions i {
+      cursor: pointer;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .card-actions i:hover {
+      color: #000;
     }
   </style>
 </head>
 <body>
 
-
 <div class="all">
-    <div class="header">
-        <h2>Coaches</h2>
-        <button class="add-button">ADD NEW COACH</button>
+<div class="header">
+        <h2>Students:</h2>
+        <a href={{ route('coach_add') }} class="add-button">Add New Coach</a>
     </div>
-    <h2>Coachs:</h2>
 
-        <div class="container">
-            @foreach ($coachs as $coach)
-
-
-                <div class="card">
-                    <img src="{{ asset($coach->image) }}" style="width: 70px; height: 70px;" alt="img">
-                    <div class="name">{{ $coach->name }}</div>
-                    <div class="info">Email: {{$coach->email}}</div>
-                    <div class="info">Mobile: {{$coach->phone}}</div>
-                    <div class="info">BirthDate: {{$coach->birthday}}</div>
-                    <div class="info">College: {{$coach->college}}</div>
-                    <div class="info">Team: {{$coach->team->name}}</div>
-                    <!-- <div class="score">Score: {{$coach->score}}</div> -->
+    <div class="students-container">
+        @foreach ($coaches as $coach)
+            <div class="student-card">
+                <img src="{{ asset($coach->image) }}" alt="img">
+                <h3>{{ $coach->name }}</h3>
+                <div class="student-info">Email: {{$coach->email}}</div>
+                <div class="student-info">Mobile: {{$coach->phone}}</div>
+                <div class="student-info">BirthDate: {{$coach->birthday}}</div>
+                <div class="student-info">College: {{$coach->college}}</div>
+                <div class="student-info">Team: {{$coach->team->name}}</div>
+                <div class="card-actions">
+                <a href={{route('coach_edit', ['id' => $coach->id])}}><i class="fas fa-edit"></i></a>
+                <a href={{route('coach_delete', ['id' => $coach->id])}}><i class="fas fa-trash-alt"></i></a>
                 </div>
-            @endforeach
-
-        </div>
-
-
+            </div>
+        @endforeach
+    </div>
 </div>
-@include('panel.static.footer')
 
+
+
+  </div>
 
 </body>
 </html>
+@include('panel.static.footer')
+
