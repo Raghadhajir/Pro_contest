@@ -6,12 +6,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Students</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       background: #f0fafa;
       padding: 20px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .header h2 {
+      color: #1f3c7d;
+      margin: 0;
+    }
+
+    .add-button {
+      background-color: #1f3c7d;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      letter-spacing: 1px;
     }
     .all {
     margin-right: 500px;
@@ -19,7 +40,7 @@
     margin-top: 100px;
     }
     h2 {
-      color: #003366;
+      color:rgb(2, 66, 130);
     }
     .container {
       display: flex;
@@ -62,21 +83,25 @@
 
 
 <div class="all">
-    <h2>Students:</h2>
+    <div class="header">
+        <h2>Coaches</h2>
+        <button class="add-button">ADD NEW COACH</button>
+    </div>
+    <h2>Coachs:</h2>
 
         <div class="container">
-            @foreach ($students as $student)
+            @foreach ($coachs as $coach)
 
 
                 <div class="card">
-                    <img src="{{ asset($student->image) }}" style="width: 70px; height: 70px;" alt="img">
-                    <div class="name">{{ $student->name }}</div>
-                    <div class="info">Email: {{$student->email}}</div>
-                    <div class="info">Mobile: {{$student->phone}}</div>
-                    <div class="info">BirthDate: {{$student->birthday}}</div>
-                    <div class="info">College: {{$student->college}}</div>
-                    <div class="info">Team: {{$student->team->name}}</div>
-                    <div class="score">Score: {{$student->score}}</div>
+                    <img src="{{ asset($coach->image) }}" style="width: 70px; height: 70px;" alt="img">
+                    <div class="name">{{ $coach->name }}</div>
+                    <div class="info">Email: {{$coach->email}}</div>
+                    <div class="info">Mobile: {{$coach->phone}}</div>
+                    <div class="info">BirthDate: {{$coach->birthday}}</div>
+                    <div class="info">College: {{$coach->college}}</div>
+                    <div class="info">Team: {{$coach->team->name}}</div>
+                    <!-- <div class="score">Score: {{$coach->score}}</div> -->
                 </div>
             @endforeach
 

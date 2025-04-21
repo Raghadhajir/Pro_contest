@@ -30,11 +30,11 @@
                     </li>
                 </ul>
             </li>
-            <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i class="menu-livicon" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">courses</span><span class="badge badge-light-danger badge-pill badge-round float-right mr-2">2</span></a>
+            <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i class="menu-livicon" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">coachs</span><span class="badge badge-light-danger badge-pill badge-round float-right mr-2">2</span></a>
                 <ul class="menu-content">
-                    <li class="active"><a href= {{ route('course') }} ><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="eCommerce">Show</span></a>
+                    <li class="active"><a href= {{ route('coach') }} ><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="eCommerce">Show</span></a>
                     </li>
-                    <li><a href= {{ route('course_add') }} ><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Analytics">Add</span></a>
+                    <li><a href= {{ route('coach_add') }} ><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Analytics">Add</span></a>
                     </li>
                 </ul>
             </li>

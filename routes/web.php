@@ -53,16 +53,26 @@ Route::get('/team/delete/{id}',[TeamController::class, 'delete'])->name('team_de
 
 // Student Route
 
-Route::get('/student/show', [UserController::class, 'index'])->name('student');
+Route::get('/student/show', [UserController::class, 'showStudent'])->name('student');
 Route::get('/student/add', [UserController::class, 'addStudent'])->name('student_add');
 Route::post('/student/add', [UserController::class, 'studentAdd'])->name('add_student');
 Route::get('/student/edit/{id}', [UserController::class, 'editStudent'])->name('student_edit');
 Route::post('/student/edit/{id}', [UserController::class, 'studentEdit'])->name('edit_student');
-Route::get('/student/delete/{id}',[UserController::class, 'delete'])->name('student_delete');
+Route::get('/student/delete/{id}',[UserController::class, 'studentDelete'])->name('student_delete');
 
 // Course Route
 
-Route::get('/course/show', [CourseController::class, 'index'])->name('course');
-Route::get('/course/add', [CourseController::class, 'addCourse'])->name('course_add');
-Route::post('/course/add', [CourseController::class, 'courseAdd'])->name('add_course');
-Route::get('/course/delete/{id}',[CourseController::class, 'delete'])->name('course_delete');
+// Route::get('/course/show', [CourseController::class, 'index'])->name('course');
+// Route::get('/course/add', [CourseController::class, 'addCourse'])->name('course_add');
+// Route::post('/course/add', [CourseController::class, 'courseAdd'])->name('add_course');
+// Route::get('/course/delete/{id}',[CourseController::class, 'delete'])->name('course_delete');
+
+
+// Student Route
+
+Route::get('/coach/show', [UserController::class, 'coachShow'])->name('coach');
+Route::get('/coach/add', [UserController::class, 'addCoach'])->name('coach_add');
+Route::post('/coach/add', [UserController::class, 'coachAdd'])->name('add_coach');
+Route::get('/coach/edit/{id}', [UserController::class, 'editCoach'])->name('coach_edit');
+Route::post('/coach/edit/{id}', [UserController::class, 'coachEdit'])->name('edit_coach');
+Route::get('/coach/delete/{id}',[UserController::class, 'coachDelete'])->name('coach_delete');
