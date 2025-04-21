@@ -10,13 +10,14 @@ class Team extends Model
 {
     use HasFactory,Uuid;
     protected $fillable=[
-        'uuid','name'
+        'uuid','name','contest_id'
     ];
-    public function participants()
-    {
-        return $this->morphMany(Participant::class, 'participant');
-    }
+
     public function users(){
         return $this->hasMany(User::class);
+    }
+    public function contest()
+    {
+        return $this->belongsTo(Contest::class);
     }
 }
