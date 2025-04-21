@@ -20,10 +20,7 @@ class Contest extends Model
             $model->uuid = str::uuid();
         });
     }
-    public function participants()
-    {
-        return $this->hasMany(Participant::class);
-    }
+   
     public function problems()
     {
         return $this->hasMany(Problem::class);

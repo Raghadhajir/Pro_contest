@@ -53,17 +53,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function participants()
-    {
-        return $this->morphMany(Participant::class, 'participant');
-    }
     public function team()
     {
         return $this->belongsTo(Team::class);
-    }
-    public function courses()
-    {
-        return $this->hasMany(Course::class);
     }
     public function solves()
     {
