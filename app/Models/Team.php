@@ -10,7 +10,7 @@ class Team extends Model
 {
     use HasFactory,Uuid;
     protected $fillable=[
-        'uuid','name','contest_id'
+        'uuid','name','contest_id','user_id'
     ];
 
     public function users(){
@@ -20,4 +20,9 @@ class Team extends Model
     {
         return $this->belongsTo(Contest::class);
     }
+    public function coach()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

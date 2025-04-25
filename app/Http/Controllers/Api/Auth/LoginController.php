@@ -26,7 +26,7 @@ class LoginController extends Controller
         $user = User::where('email', '=', $request->email)->first();
 // dd($user);
         if (!$user) {
-            $error = 'your email or password not found';
+            $error = 'your email  not found';
             return $this->apiResponse(null, false, $error, 404);
         }
 
@@ -36,7 +36,7 @@ class LoginController extends Controller
             $data["token"] = $token;
             return $this->apiResponse($data);
         } else {
-            $error = 'your password not correct';
+            $error = 'your password or email not correct';
             return $this->apiResponse(null, false, $error);
         }
     }

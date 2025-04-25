@@ -14,18 +14,26 @@ class ProblemController extends Controller
 
     public function getproblems()
     {
-        $problems = Problem::all();
+        $score = auth()->user()->score;
+        if ($score < 20) {
+            $level = 'beginner';
+        } elseif ($score <= 40) {
+            $level = 'medium';
+        } else {
+            $level = 'advanced';
+        }
+        $problems = Problem::where('level', $level)->get();
         $data = ProblemResource::collection($problems);
         return $this->apiResponse($data);
-;
-    }
-    // public function city($id)
-    // {
-    //     $city = City::where('uuid', '=', $id)->first();
-    //     $data=CityResource::make($city);
-    //     return $this->apiResponse($data);
 
-    // }
+    }
+    public function Problem($id)
+    {
+        $city = Problem::where('uuid', '=', $id)->first();
+        $data=ProblemResource::make($city);
+        return $this->apiResponse($data);
+
+    }
 
 
 
