@@ -53,10 +53,15 @@ class User extends Authenticatable
     ];
     public function team()
     {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Team::class,'id');
     }
     public function solves()
     {
         return $this->hasMany(Solve::class);
+    }
+    public function teams()
+    {
+        return $this->hasMany(Team::class, 'user_id');
+
     }
 }

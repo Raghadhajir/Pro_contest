@@ -14,13 +14,13 @@ class Team extends Model
     ];
 
     public function users(){
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class,'team_id');
     }
     public function contest()
     {
         return $this->belongsTo(Contest::class);
     }
-    public function coach()
+    public function User()
     {
         return $this->belongsTo(User::class);
     }

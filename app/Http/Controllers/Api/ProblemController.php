@@ -29,8 +29,8 @@ class ProblemController extends Controller
     }
     public function Problem($id)
     {
-        $city = Problem::where('uuid', '=', $id)->first();
-        $data=ProblemResource::make($city);
+        $problem = Problem::where('uuid', '=', $id)->first();
+        $data=ProblemResource::make($problem);
         return $this->apiResponse($data);
 
     }

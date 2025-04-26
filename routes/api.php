@@ -44,6 +44,9 @@ Route::middleware(['auth:sanctum', 'IsUser'])->group(function () {
 Route::middleware(['auth:sanctum', 'IsCoach'])->group(function () {
     Route::get('/coachProfile', [UserController::class, 'coachProfile']);
     Route::post('/register_contest', [TeamController::class, 'AddTeam']);
+    Route::post('/edit-team', [TeamController::class, 'EditTeam']);
+    Route::get('/delete-team/{id}', [TeamController::class, 'DeleteTeam']);
+    Route::get('/coach-teams', [TeamController::class, 'coachteams']);
 
 });
 
