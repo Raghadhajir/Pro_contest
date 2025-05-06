@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Students</title>
+  <title>Coaches</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <style>
@@ -110,8 +110,8 @@
 <body>
 
 <div class="all">
-<div class="header">
-        <h2>Students:</h2>
+    <div class="header">
+        <h2>Coaches:</h2>
         <a href={{ route('coach_add') }} class="add-button">Add New Coach</a>
     </div>
 
@@ -124,7 +124,7 @@
                 <div class="student-info">Mobile: {{$coach->phone}}</div>
                 <div class="student-info">BirthDate: {{$coach->birthday}}</div>
                 <div class="student-info">College: {{$coach->college}}</div>
-                <div class="student-info">Team: {{$coach->team->name}}</div>
+                <div class="student-info">Team: {{$coach->team?->name}}</div>
                 <div class="card-actions">
                 <a href={{route('coach_edit', ['id' => $coach->id])}}><i class="fas fa-edit"></i></a>
                 <a href={{route('coach_delete', ['id' => $coach->id])}}><i class="fas fa-trash-alt"></i></a>

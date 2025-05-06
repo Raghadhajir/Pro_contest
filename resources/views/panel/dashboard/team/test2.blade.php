@@ -2,80 +2,77 @@
 @include('panel.static.main')
 
 
-<!DOCTYPE html>
-<html lang="en">
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
 
-@include('panel.static.header')
-@include('panel.static.main')
-
-<head>
-  <meta charset="UTF-8">
-  <title>Teams</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f1f9f9;
-      padding: 20px;
-    }
-
-    h2 {
-      color: #002a5c;
-    }
-
-    .team-card {
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      margin: 0 auto 20px;
-      width: 500px;
-    }
-
-    .team-card span {
-      color: #f55b5b;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .team-card p {
-      margin: 5px 0;
-    }
-
-    .team-section {
-      color: #003366;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-  </style>
-</head>
-<body>
-
-    <h2>Teams:</h2>
-
-    @foreach ($teams as $team)
-
-        <div class="team-card">
-            <p><span>Team name</span>: {{$team->name}}</p>
-            <p><span>Coach name</span>:
-                @foreach($coachs as $coach)
-                    @if($team->id == $coach->team_id)
-                        {{$coach->name}}
-                    @endif
-                @endforeach
-            </p>
-            <p><span>Members</span>:<br>
-                @foreach($members as $member)
-                    @if($team->id == $member->team_id)
-                        {{$member->name}}<br>
-                    @endif
-                @endforeach
-            </p>
-            <p><span>Creation date</span>: {{$team->created_at}}</p>
         </div>
-    @endforeach
+        <div class="content-body">
 
+            <style>
+                body {}
+
+                .container {
+                    font-family: Arial, sans-serif;
+                    margin-top: 100px;
+                    padding: 0;
+                    height: fit-content;
+                    width: 300px;
+                    padding: 20px;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                }
+
+                input[type="text"] {
+                    width: 100%;
+                    margin-bottom: 15px;
+                    margin-top: 10px;
+                    box-sizing: border-box;
+                    font-size: 2.2rem;
+                }
+
+                input[type="submit"] {
+                    max-width: max-content;
+                    margin-top: 20px;
+                    margin-inline: auto;
+                    font-size: var(--fs-9);
+                    font-weight: var(--fw-500);
+                    text-transform: uppercase;
+                    border: 1px solid #5C4B99;
+                    padding: 8px 20px;
+                    transition: var(--transition);
+                    background: hsl(0, 0%, 91%);
+                }
+            </style>
+            <div class="container">
+                <form method="post" action="{{route('team_add')}}">
+                @csrf
+
+                    <label for="tname">Team name :</label>
+                    <input type="text" id="tname" name="name">
+                    @error('name')
+                        <p style="color:red">*{{ $message }}</p>
+                    @enderror
+
+                    contest :
+                    <select name="contest_id">
+                        @foreach ($contests as $contest)
+
+                            <option value="{{$contest->id}}">
+                                {{$contest->name}}
+                            </option>
+                        @endforeach
+                    </select>
+                    <br><br>
+
+                    <input type="submit" value="add">
+            </div>
+        </div>
+    </div>
+</div>
 
 @include('panel.static.footer')
 
 </body>
+
 </html>

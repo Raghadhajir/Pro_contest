@@ -125,7 +125,7 @@
                 <div class="student-info">Mobile: {{$student->phone}}</div>
                 <div class="student-info">BirthDate: {{$student->birthday}}</div>
                 <div class="student-info">College: {{$student->college}}</div>
-                <div class="student-info">Team: {{$student->team->name}}</div>
+                <div class="student-info">Team: {{$student->team?->name}}</div>
                 <div class="score">Score: {{$student->score}}</div>
                 <div class="card-actions">
                 <a href={{route('student_edit', ['id' => $student->id])}}><i class="fas fa-edit"></i></a>

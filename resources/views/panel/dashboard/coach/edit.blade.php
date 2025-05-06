@@ -1,140 +1,192 @@
 @include('panel.static.header')
 @include('panel.static.main')
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Coach</title>
+  <style>
+    .edit_coach {
+      font-family: Arial, sans-serif;
+      background-color: #f1f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-<div class="app-content content">
-    <div class="content-overlay"></div>
-    <div class="content-wrapper">
-        <div class="content-header row">
+    .form-container {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgb(63, 91, 204);
+      text-align: center;
+    }
 
+    .form-container h2 {
+      color: #1b3a5d;
+      margin-bottom: 20px;
+    }
+
+    .photo-upload {
+      margin-bottom: 20px;
+    }
+
+    .photo-upload img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #1b3a5d;
+      padding: 10px;
+    }
+
+    .photo-upload p {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #1b3a5d;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .co_info {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px rgb(63, 91, 204);
+        font-size: 14px;
+        width: 100%;
+        background-color: white;
+        color: #555;
+        appearance: none;
+    }
+
+
+    /* input[type="text"], input[type="email"], input[type="password"], input[type="tel"] {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 2px 2px 5px rgb(63, 91, 204);
+      font-size: 14px;
+    }
+
+    select {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 2px 2px 5px rgb(63, 91, 204);
+      font-size: 14px;
+      width: 100%;
+      background-color: white;
+      color: #555;
+      appearance: none; /* لإزالة السهم الافتراضي ببعض المتصفحات */
+    /* } */
+
+    select:invalid {
+      color: #999; /* لتغيير لون placeholder */
+    } */
+
+    select:invalid {
+      color: #999;
+    }
+
+    button {
+      padding: 10px 30px;
+      background-color: #1b3a5d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #16304b;
+    }
+  </style>
+</head>
+
+<div class="edit_coach">
+  <div class="form-container">
+    <h2>Edit Coach</h2>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>* {{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
-        <div class="content-body">
+    @endif
 
-            <style>
-                body {}
+    <form action="{{route('coach_edit',['id'=>$coach->id])}}" method="POST" enctype="multipart/form-data">
+      @csrf
 
-                .container {
-                    font-family: Arial, sans-serif;
-                    margin-top: 100px;
-                    padding: 0;
-                    height: fit-content;
-                    width: 300px;
-                    padding: 20px;
-                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                }
+      <div class="photo-upload">
+        <label for="photo-upload-input">
+          <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Upload Icon" style="cursor: pointer;">
+          <p style="cursor: pointer;">upload photo</p>
+        </label>
+        <input type="file" id="photo-upload-input" style="display: none;" name="image" >
+        @error('image')
+            <p style="color:red">*{{ $message }}</p>
+        @enderror
+      </div>
 
-                input[type="text"],
-                input[type="email"],
-                input[type="password"],
-                 select {
-                    width: 100%;
-                    margin-bottom: 15px;
-                    margin-top: 10px;
-                    box-sizing: border-box;
-                    font-size: 1.2rem;
-                }
+      <div class="form-grid">
+        <input type="text" placeholder="Name" name="name" value="{{ $coach->name }}" class="co_info">
+        @error('name')
+            <p style="color:red">*{{ $message }}</p>
+        @enderror
 
-                input[type="submit"] {
-                    max-width: max-content;
-                    margin-top: 20px;
-                    margin-inline: auto;
-                    font-size: var(--fs-9);
-                    font-weight: var(--fw-500);
-                    text-transform: uppercase;
-                    border: 1px solid #5C4B99;
-                    padding: 8px 20px;
-                    transition: var(--transition);
-                    background: hsl(0, 0%, 91%);
-                }
-            </style>
-            <div class="container">
-                <form method="post" action="{{route('coach_edit',['id'=>$coach->id])}}" enctype="multipart/form-data">
-                    @csrf
-                    <label for="name">name :</label>
-                    <input type="text" id="name" name="name" value="{{ $coach->name }}">
-                    @error('name')
-                        <p style="color:red">*{{ $message }}</p>
-                    @enderror
+        <input type="email" placeholder="Email" name="email" value="{{ $coach->email }}" class="co_info">
+        @error('email')
+            <p style="color:red">*{{ $message }}</p>
+        @enderror
 
-                    <label for="email">email :</label>
-                    <input type="email" id="email" name="email" value="{{ $coach->email }}">
-                    @error('email')
-                        <p style="color:red">*{{ $message }}</p>
-                    @enderror
+        <input type="password" placeholder="Password" name="password" value="{{ $coach->password }}" class="co_info">
+        @error('password')
+            <p style="color:red">*{{ $message }}</p>
+        @enderror
+
+        <input type="tel" placeholder="Mobile Phone" name="phone" value="{{ $coach->phone }}" class="co_info">
+        @error('phone')
+            <p style="color:red">*{{ $message }}</p>
+        @enderror
+
+        <input type="date" placeholder="Birth Date" name="birthday" value="{{ $coach->birthday }}" class="co_info">
+        @error('birthday')
+            <p style="color:red">*{{ $message }}</p>
+        @enderror
+
+        <input type="text" placeholder="College" name="college" value="{{ $coach->college }}" class="co_info">
+        @error('college')
+            <p style="color:red">*{{ $message }}</p>
+        @enderror
 
 
-                    <label for="pass">password :</label>
-                    <input type="password" id="pass" name="password" value="{{ $coach->password }}">
-                    @error('password')
-                        <p style="color:red">*{{ $message }}</p>
-                    @enderror
 
+        <!-- <select name="team_id" id="team_id" >
+            <option value="" disabled selected hidden>-- Select Team --</option>
+                @foreach ($teams as $team)
+                    <option value="{{ $team->id }}">{{ $team->name }}</option>
+                @endforeach
+        </select>
+        @error('team_id')
+            <p style="color:red">*{{ $message }}</p>
+        @enderror -->
+      </div>
 
-                    <label for="phone">phone :</label>
-                    <input type="text" id="phone" name="phone" value="{{ $coach->phone }}">
-                    @error('phone')
-                        <p style="color:red">*{{ $message }}</p>
-                    @enderror
-
-
-                    <label for="birthday">birthday :</label>
-                    <input type="date" id="birthday" name="birthday" value="{{ $coach->birthday }}">
-                    @error('birthday')
-                        <p style="color:red">*{{ $message }}</p>
-                    @enderror
-
-
-                    <label for="college">college :</label>
-                    <input type="text" id="college" name="college" value="{{ $coach->college }}">
-                    @error('college')
-                        <p style="color:red">*{{ $message }}</p>
-                    @enderror
-
-
-                    <label for="is_coach">is_coach :</label>
-                    <input type="text" id="is_coach" name="is_coach" value="{{ $coach->is_coach }}">
-                    @error('is_coach')
-                        <p style="color:red">*{{ $message }}</p>
-                    @enderror
-
-
-                    <label for="score">score :</label>
-                    <input type="text" id="score" name="score" value="{{ $coach->score }}">
-                    @error('score')
-                        <p style="color:red">*{{ $message }}</p>
-                    @enderror
-
-
-                    <label for="image"> Upload image :</label>
-                    <input type="file" id="image" name="image" class="form-control" >
-                    @error('image')
-                        <p style="color:red">*{{ $message }}</p>
-                    @enderror
-
-
-                    team :
-                    <select name="team_id" >
-                        @foreach ($teams as $team)
-
-                            <option value="{{$team->id}}">
-                                {{$team->name}}
-                            </option>
-                        @endforeach
-                    </select>
-                    <br><br>
-
-
-                    <input type="hidden" name="type" value="coach">
-
-
-                    <input type="submit" value="edit">
-            </div>
-        </div>
-    </div>
+      <button type="submit">Edit now</button>
+    </form>
+  </div>
 </div>
+</html>
 
 @include('panel.static.footer')
 
-</body>
 
-</html>

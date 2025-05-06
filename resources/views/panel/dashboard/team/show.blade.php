@@ -64,8 +64,10 @@
 
 <div class="all">
     <div class="content">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
         <h2>Teams:</h2>
-
+        <a href={{ route('team_add') }} style="background-color: #007bff; color: white; padding: 10px 15px; border-radius: 5px; font-size: 14px; text-decoration: none;">Add New Team</a>
+    </div>
         @foreach ($teams as $team)
             <div class="team-card">
                 <div class="team-info">

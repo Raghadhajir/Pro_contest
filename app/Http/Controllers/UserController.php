@@ -35,10 +35,10 @@ class UserController extends Controller
                 'phone' => 'required|regex:/(0)[0-9]/|not_regex:/[a-z]/|min:9',
                 'birthday' => 'required|date',
                 'college' => 'required|string',
-                'is_coach' => 'required|in:0,1',
+                'is_coach' => 'nullable|string',
                 'score' => 'required|string',
                 'image' => 'required|image|mimes:png,jpg,jpeg,webp',
-                'team_id' => 'required|string|exists:teams,id'
+                'team_id' => 'nullable|string'
         ]);
         if($validator->fails())
         {
@@ -58,10 +58,10 @@ class UserController extends Controller
                 'phone' => $request->phone,
                 'birthday' => $request->birthday,
                 'college' => $request->college,
-                'is_coach' => $request->is_coach,
+                'is_coach' => 0,
                 'score' => $request->score,
                 'image' => $path.$filename,
-                'team_id' => $request->team_id,
+                // 'team_id' => $request->team_id ?:null,
         ]);
         return redirect()->route('student');
     }
@@ -79,10 +79,10 @@ class UserController extends Controller
             'phone' => 'required|regex:/(0)[0-9]/|not_regex:/[a-z]/|min:9',
             'birthday' => 'required|date',
             'college' => 'required|string',
-            'is_coach' => 'required|in:0,1',
+            'is_coach' => 'nullable|string',
             'score' => 'nullable|string',
             'image' => 'required|image|mimes:png,jpg,jpeg,webp',
-            'team_id' => 'required|string|exists:teams,id'
+            'team_id' => 'nullable|string'
     ]);
     if($validator->fails())
     {
@@ -102,9 +102,9 @@ class UserController extends Controller
             'phone' => $request->phone,
             'birthday' => $request->birthday,
             'college' => $request->college,
-            'is_coach' => $request->is_coach,
+            'is_coach' => 1,
             'image' => $path.$filename,
-            'team_id' => $request->team_id,
+            // 'team_id' => $request->team_id,
     ]);
     return redirect()->route('coach');
     }
@@ -124,10 +124,10 @@ class UserController extends Controller
             'phone' => 'required|regex:/(0)[0-9]/|not_regex:/[a-z]/|min:9',
             'birthday' => 'required|date',
             'college' => 'required|string',
-            'is_coach' => 'required|in:0,1',
+            'is_coach' => 'nullable|string',
             'score' => 'required|string',
             'image' => 'required|image|mimes:png,jpg,jpeg,webp',
-            'team_id' => 'required|string|exists:teams,id'
+            'team_id' => 'nullable|string'
         ]);
         if ($validator->fails())
         {
@@ -150,10 +150,10 @@ class UserController extends Controller
             'phone' => $request->phone,
             'birthday' => $request->birthday,
             'college' => $request->college,
-            'is_coach' => $request->is_coach,
+            'is_coach' => 0,
             'score' => $request->score,
             'image' => $path.$filename,
-            'team_id' => $request->team_id,
+            // 'team_id' => $request->team_id,
         ]);
 
         return redirect()->route('student');
@@ -174,10 +174,10 @@ class UserController extends Controller
             'phone' => 'required|regex:/(0)[0-9]/|not_regex:/[a-z]/|min:9',
             'birthday' => 'required|date',
             'college' => 'required|string',
-            'is_coach' => 'required|in:0,1',
+            'is_coach' => 'nullable|string',
             'score' => 'nullable|string',
             'image' => 'required|image|mimes:png,jpg,jpeg,webp',
-            'team_id' => 'required|string|exists:teams,id'
+            'team_id' => 'nullable|string'
         ]);
         if ($validator->fails())
         {
@@ -200,10 +200,9 @@ class UserController extends Controller
             'phone' => $request->phone,
             'birthday' => $request->birthday,
             'college' => $request->college,
-            'is_coach' => $request->is_coach,
-            'score' => $request->score,
+            'is_coach' => 1,
             'image' => $path.$filename,
-            'team_id' => $request->team_id,
+            // 'team_id' => $request->team_id,
         ]);
 
         return redirect()->route('coach');
