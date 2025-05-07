@@ -36,6 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware(['auth:sanctum', 'IsUser'])->group(function () {
     Route::post('/uploadsolve', [SolveController::class, 'uploadsolve']);
     Route::get('/userProfile', [UserController::class, 'userProfile']);
+    Route::post('/edit-user-profile', [UserController::class, 'EditUserProfile']);
     Route::get('/getproblems', [ProblemController::class, 'getproblems']);
     Route::get('/problem/{id}', [ProblemController::class, 'problem']);
 });
@@ -43,6 +44,7 @@ Route::middleware(['auth:sanctum', 'IsUser'])->group(function () {
 //coach
 Route::middleware(['auth:sanctum', 'IsCoach'])->group(function () {
     Route::get('/coachProfile', [UserController::class, 'coachProfile']);
+    Route::post('/edit-coach-profile', [UserController::class, 'EditCoachProfile']);
     Route::post('/register_contest', [TeamController::class, 'AddTeam']);
     Route::post('/edit-team', [TeamController::class, 'EditTeam']);
     Route::get('/delete-team/{id}', [TeamController::class, 'DeleteTeam']);

@@ -9,6 +9,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+
 
 class RegisterController extends Controller
 {
@@ -35,22 +37,27 @@ class RegisterController extends Controller
         }
         if (isset($request->image)) {
             $show = $request->file('image')->store('image', 'public');
-            $image=env('PATH_IMG') . $show;
+            $image = env('PATH_IMG') . $show;
         } else {
             $image = null;
         }
-        $user = User::create([
-            'name' => $request->name,
-            'password' =>  Hash::make("$request->password"),
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'image' => $image,
-            'birthday' => $request->birthday,
-            'college' => $request->college,
-        ]);
-        if($user){
-            $data[] = RegisterResource::make($user);
-            return $this->apiResponse($data);
+        if (!User::where('email', $request->email)) {
+            $user = User::create([
+                'name' => $request->name,
+                'password' => Hash::make("$request->password"),
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'image' => $image,
+                'birthday' => $request->birthday,
+                'college' => $request->college,
+            ]);
+            if ($user) {
+                $data[] = RegisterResource::make($user);
+                return $this->apiResponse($data);
+            }
+
+        } else {
+            return $this->apiResponse(null, false, 'this email has already token', 200);
 
         }
 
