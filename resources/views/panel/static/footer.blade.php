@@ -1,9 +1,9 @@
 <footer class="footer footer-static footer-light">
     <p class="clearfix mb-0">
-        <span class="float-left d-inline-block">2024 © Derrebni Order</span>
-        <span class="float-right d-sm-inline-block d-none">Designed And Programming  with<i class="bx bxs-heart pink mx-50 font-small-3"></i>
-            by <a class="text-uppercase" href="https://fb.com/fenix.p2h" target="_blank">Muhammad Khalaf 😎</a></span>
-        <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="bx bx-up-arrow-alt"></i></button>
+        <span class="float-left d-inline-block"></span>
+        <span class="float-right d-sm-inline-block d-none"><i class="bx bxs-heart pink mx-50 font-small-3"></i>
+            <a class="text-uppercase" href="https://fb.com/fenix.p2h" target="_blank"></a></span>
+        <!-- <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="bx bx-up-arrow-alt"></i></button> -->
     </p>
 </footer>
 
