@@ -51,14 +51,11 @@ Route::get('/create_problems/{id}', [ProblemController::class, 'download'])->nam
 
 
 
-
 Route::get('/solves', [SolveController::class, 'index'])->name('all_solve');
 Route::get('/solves/{solve}', [SolveController::class, 'show'])->name('one_solve');
 Route::post('/solves/{solve}/update-status', [SolveController::class, 'updateStatus'])->name('solves.updateStatus');
 Route::delete('/solves/{solve}', [SolveController::class, 'destroy'])->name('solves.destroy');
 Route::get('/home/chart', [UserController::class, 'index'])->name('home_chart');
-
-
 
 Route::get('/date', [ContestController::class, 'index'])->name('all_date');
 Route::get('/date/create', [ContestController::class, 'create'])->name('add_date');
