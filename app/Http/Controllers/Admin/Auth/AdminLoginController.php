@@ -1,26 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Admin;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
-class LoginController extends Controller
+class AdminLoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
     use AuthenticatesUsers;
 
     /**
@@ -42,12 +31,13 @@ class LoginController extends Controller
 
     public function show_login_form()
     {
+
         return view('auth.login');
     }
 
     public function login(Request $request)
     {
-
+// dd($request->UserMail,$request->password);
         $request->validate([
             'UserMail' => 'required',
             'password' => 'required',
@@ -63,14 +53,17 @@ class LoginController extends Controller
             $request['email'] = $login;
         }
 
-        $credentials = $request->except(['_token','remember','UserMail']);
-        if (auth()->attempt($credentials)) {
-            $user = User::where('email',$request->UserMail)->orWhere('mobile',$request->UserMail)->first();
-            if($user->type == 'admin'){
+        // $credentials = $request->except(['_token','remember','UserMail']);
+        $credentials = [
+            'email' => $request->UserMail,
+            'password' => $request->password,
+        ];
+        if (auth()->guard('admin')->attempt($credentials)) {
+            $user = Admin::where('email',$request->UserMail)->first();
+            // dd($user);
+            if($user){
                 $this->redirectTo = '/admin-panel';
                 return redirect()->route('Admin-Panel');
-            }else if($user->type == 'monitor'){
-                return redirect()->route('Monitor-Panel');
             }else{
                 return redirect()->back()->withErrors(['email', 'Invalid credentials'])->withInput()->with('message', 'خطأ في الصلاحية');
             }
@@ -96,7 +89,7 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        $user = User::create([
+        $user = Admin::create([
             'name' => trim($request->input('name')),
             'email' => strtolower($request->input('email')),
             'password' => bcrypt($request->input('password')),
@@ -114,6 +107,4 @@ class LoginController extends Controller
 
         return redirect()->route('login');
     }
-
-
 }

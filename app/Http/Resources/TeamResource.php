@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProblemResource extends JsonResource
+class TeamResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,12 @@ class ProblemResource extends JsonResource
     {
         return [
             'id'=>$this->uuid,
-            'title'=>$this->title,
-            'description'=>$this->description,
-            'file'=>$this->file,
-            'level'=>$this->level
+            'name'=>$this->name,
+            'name contest'=>$this->contest->name,
+            'members'=>UserResource::collection($this->users()->get()),
+            'coach name'=>$this->User->name,
+            'coach id'=>$this->User->uuid,
+            'created_at' => $this->created_at->toDateString(),
 
         ];
     }

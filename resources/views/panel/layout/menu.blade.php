@@ -24,7 +24,7 @@
                         data-i18n="home">home</span><span
                         class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
                 <ul class="menu-content">
-                    <li class="active"><a href="{{ route('home_chart') }}">
+                    <li><a href="{{ route('home_chart') }}">
                             <i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="all">all</span></a>
                     </li>
 
@@ -34,10 +34,10 @@
             <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i
                         class="menu-livicon" data-icon="desktop"></i><span class="menu-title"
                         data-i18n="problem">problem</span><span
-                        class="badge badge-light-danger badge-pill badge-round float-right mr-2">2</span></a>
+                        class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
 
                 <ul class="menu-content">
-                    <li class="active"><a href="{{ route( 'all_problem' )}}"><i class="bx bx-right-arrow-alt"></i><span
+                    <li><a href="{{ route( 'all_problem' )}}"><i class="bx bx-right-arrow-alt"></i><span
                                 class="menu-item" data-i18n="all">all</span></a>
                     </li>
                     <li><a href="{{ route( 'add_problem' )}}"><i class="bx bx-right-arrow-alt"></i><span
@@ -54,12 +54,48 @@
                         data-i18n="date of race">date of race</span><span
                         class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
                 <ul class="menu-content">
-                    <li class="active"><a href="{{ route('all_date') }}">
+                    <li><a href="{{ route('all_date') }}">
                             <i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="all">all</span></a>
                     </li>
 
                 </ul>
             </li>
+            <br>
+
+            <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i
+                        class="menu-livicon" data-icon="desktop"></i><span class="menu-title"
+                        data-i18n="Dashboard">Teams</span><span
+                        class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
+                <ul class="menu-content">
+                    <li><a href={{ route('team') }}><i class="bx bx-right-arrow-alt"></i><span class="menu-item"
+                                data-i18n="eCommerce">Show</span></a>
+                    </li>
+
+                </ul>
+            </li> <br>
+            <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i
+                        class="menu-livicon" data-icon="desktop"></i><span class="menu-title"
+                        data-i18n="Dashboard">Students</span><span
+                        class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
+                <ul class="menu-content">
+                    <li><a href={{ route('student') }}><i class="bx bx-right-arrow-alt"></i><span class="menu-item"
+                                data-i18n="eCommerce">Show</span></a>
+                    </li>
+                </ul>
+            </li> <br>
+            <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i
+                        class="menu-livicon" data-icon="desktop"></i><span class="menu-title"
+                        data-i18n="Dashboard">Coaches</span><span
+                        class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
+                <ul class="menu-content">
+                    <li><a href={{ route('coach') }}><i class="bx bx-right-arrow-alt"></i><span class="menu-item"
+                                data-i18n="eCommerce">Show</span></a>
+                    </li>
+                </ul>
+            </li>
+
+
+
         </ul>
     </div>
 </div>
