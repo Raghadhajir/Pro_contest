@@ -3,25 +3,97 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand" href="#">
-                    <div class="brand-logo"><img class="logo" src="{{ asset('app-assets/images/logo/logo.png') }}" /></div>
+                    <div class="brand-logo"><img class="logo" src="{{ asset('app-assets/images/logo/logo.png') }}" />
+                    </div>
                     <h2 class="brand-text mb-0">{{ config('app.name') }}</h2>
                 </a></li>
-            <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon="bx-disc"></i></a></li>
+            <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i
+                        class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i
+                        class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary"
+                        data-ticon="bx-disc"></i></a></li>
         </ul>
     </div>
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
-        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation"
+            data-icon-style="lines">
             <li class=" navigation-header"><span>Dashboard</span>
             </li>
-            <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i class="menu-livicon" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span><span class="badge badge-light-danger badge-pill badge-round float-right mr-2">2</span></a>
+            <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i
+                        class="menu-livicon" data-icon="desktop"></i><span class="menu-title"
+                        data-i18n="home">home</span><span
+                        class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
                 <ul class="menu-content">
-                    <li class="active"><a href="dashboard-ecommerce.html"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="eCommerce">eCommerce</span></a>
+                    <li><a href="{{ route('home_chart') }}">
+                            <i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="all">all</span></a>
                     </li>
-                    <li><a href="dashboard-analytics.html"><i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="Analytics">Analytics</span></a>
+
+                </ul>
+            </li>
+            <br>
+            <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i
+                        class="menu-livicon" data-icon="desktop"></i><span class="menu-title"
+                        data-i18n="problem">problem</span><span
+                        class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
+
+                <ul class="menu-content">
+                    <li><a href="{{ route( 'all_problem' )}}"><i class="bx bx-right-arrow-alt"></i><span
+                                class="menu-item" data-i18n="all">all</span></a>
+                    </li>
+                    <li><a href="{{ route( 'add_problem' )}}"><i class="bx bx-right-arrow-alt"></i><span
+                                class="menu-item" data-i18n="add">add</span></a>
+                    </li>
+                    <li><a href="{{ route('all_solve') }}"><i class="bx bx-right-arrow-alt"></i><span class="menu-item"
+                                data-i18n="solved problem">solved problem</span></a>
                     </li>
                 </ul>
             </li>
+            <br>
+            <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i
+                        class="menu-livicon" data-icon="desktop"></i><span class="menu-title"
+                        data-i18n="date of race">date of race</span><span
+                        class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
+                <ul class="menu-content">
+                    <li><a href="{{ route('all_date') }}">
+                            <i class="bx bx-right-arrow-alt"></i><span class="menu-item" data-i18n="all">all</span></a>
+                    </li>
+
+                </ul>
+            </li>
+            <br>
+
+            <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i
+                        class="menu-livicon" data-icon="desktop"></i><span class="menu-title"
+                        data-i18n="Dashboard">Teams</span><span
+                        class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
+                <ul class="menu-content">
+                    <li><a href={{ route('team') }}><i class="bx bx-right-arrow-alt"></i><span class="menu-item"
+                                data-i18n="eCommerce">Show</span></a>
+                    </li>
+
+                </ul>
+            </li> <br>
+            <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i
+                        class="menu-livicon" data-icon="desktop"></i><span class="menu-title"
+                        data-i18n="Dashboard">Students</span><span
+                        class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
+                <ul class="menu-content">
+                    <li><a href={{ route('student') }}><i class="bx bx-right-arrow-alt"></i><span class="menu-item"
+                                data-i18n="eCommerce">Show</span></a>
+                    </li>
+                </ul>
+            </li> <br>
+            <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i
+                        class="menu-livicon" data-icon="desktop"></i><span class="menu-title"
+                        data-i18n="Dashboard">Coaches</span><span
+                        class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
+                <ul class="menu-content">
+                    <li><a href={{ route('coach') }}><i class="bx bx-right-arrow-alt"></i><span class="menu-item"
+                                data-i18n="eCommerce">Show</span></a>
+                    </li>
+                </ul>
+            </li>
+
 
 
         </ul>

@@ -15,9 +15,11 @@ class ProblemResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id'=>$this->uuid,
             'title'=>$this->title,
             'description'=>$this->description,
             'file'=>$this->file,
+            'level'=>$this->level
 
         ];
     }
