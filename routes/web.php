@@ -7,7 +7,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ProblemController;
+use App\Http\Controllers\SolveController;
+use App\Http\Controllers\ParticipantController;
+use App\Http\Controllers\ContestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +49,7 @@ use Illuminate\Support\Facades\Route;
 
 //Auth::routes();
 
+
 Route::get('/test', [DashboardController::class, 'index'])->middleware('admin')->name('Admin-Panel');
 Route::get('/404', [DashboardController::class, 'notFound'])->name('404');
 Route::get('/500', [DashboardController::class, 'serverError'])->name('404');
@@ -54,7 +58,24 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/all_problem',[ProblemController::class, 'index'])->name('all_problem');
 
+Route::get('/create_problems', [ProblemController::class, 'create'])->name('add_problem');
+Route::post('/create_problems', [ProblemController::class, 'store'])->name('store_problem');
+Route::get('/create_problems/{id}', [ProblemController::class, 'download'])->name('problem.download');
+
+
+
+Route::get('/solves', [SolveController::class, 'index'])->name('all_solve');
+Route::get('/solves/{solve}', [SolveController::class, 'show'])->name('one_solve');
+Route::post('/solves/{solve}/update-status', [SolveController::class, 'updateStatus'])->name('solves.updateStatus');
+Route::delete('/solves/{solve}', [SolveController::class, 'destroy'])->name('solves.destroy');
+Route::get('/home/chart', [UserController::class, 'index'])->name('home_chart');
+
+Route::get('/date', [ContestController::class, 'index'])->name('all_date');
+Route::get('/date/create', [ContestController::class, 'create'])->name('add_date');
+Route::post('/date/create', [ContestController::class, 'store'])->name('contests.store');
+Route::get('/contests', [ContestController::class, 'index'])->name('all_date');
 // Team Route
 
 Route::get('/team/show', [TeamController::class, 'index'])->name('team');
