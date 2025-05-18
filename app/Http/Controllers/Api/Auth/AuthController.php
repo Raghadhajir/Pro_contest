@@ -45,11 +45,7 @@ class AuthController extends Controller
     {
         $validate = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => [
-                "required",
-                "email",
-                "max:255",
-            ],
+            'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|string|min:8|max:15',
             'phone' => 'nullable|string|max:15',
             'birthday' => 'required|string',
@@ -67,7 +63,7 @@ class AuthController extends Controller
         } else {
             $image = null;
         }
-        if (!User::where('email', $request->email)) {
+        // dd(User::where('email', $request->email));
             $user = User::create([
                 'name' => $request->name,
                 'password' => Hash::make("$request->password"),
@@ -82,10 +78,6 @@ class AuthController extends Controller
                 return $this->apiResponse($data);
             }
 
-        } else {
-            return $this->apiResponse(null, false, 'this email has already token', 200);
-
-        }
 
     }
 }
