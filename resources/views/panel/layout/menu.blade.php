@@ -1,16 +1,18 @@
 <!-- BEGIN: Main Menu-->
-<div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true"
+    style="left: 0%;direction: ltr;">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
-            <li class="nav-item mr-auto"><a class="navbar-brand" href="#">
+            <li class="nav-item "><a class="navbar-brand" href="#" style="left:0%;">
                     <div class="brand-logo"><img class="logo" src="{{ asset('app-assets/images/logo/logo.png') }}" />
                     </div>
-                    <h2 class="brand-text mb-0">{{ config('app.name') }}</h2>
+                    <h2 style="left:0%;" class="brand-text mb-0">{{ config('app.name') }}</h2>
                 </a></li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i
                         class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i
-                        class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary"
-                        data-ticon="bx-disc"></i></a></li>
+                        class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon=""></i></a>
+            </li>
         </ul>
     </div>
     <div class="shadow-bottom"></div>
@@ -20,7 +22,7 @@
             <li class=" navigation-header"><span>Dashboard</span>
             </li>
             <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i
-                        class="menu-livicon" data-icon="desktop"></i><span class="menu-title"
+                        class="menu-livicon" data-icon="home"></i><span class="menu-title"
                         data-i18n="home">home</span><span
                         class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
                 <ul class="menu-content">
@@ -32,7 +34,7 @@
             </li>
             <br>
             <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i
-                        class="menu-livicon" data-icon="desktop"></i><span class="menu-title"
+                        class="menu-livicon" data-icon="bulb"></i><span class="menu-title"
                         data-i18n="problem">problem</span><span
                         class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
 
@@ -50,8 +52,9 @@
             </li>
             <br>
             <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i
-                        class="menu-livicon" data-icon="desktop"></i><span class="menu-title"
-                        data-i18n="date of race">date of race</span><span
+                        class="menu-livicon" data-icon="calendar"></i><span class="menu-title"
+                        data-i18n="date of race">date
+                        of race</span><span
                         class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
                 <ul class="menu-content">
                     <li><a href="{{ route('all_date') }}">
@@ -63,7 +66,7 @@
             <br>
 
             <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i
-                        class="menu-livicon" data-icon="desktop"></i><span class="menu-title"
+                        class="menu-livicon" data-icon="users"></i><span class="menu-title"
                         data-i18n="Dashboard">Teams</span><span
                         class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
                 <ul class="menu-content">
@@ -74,7 +77,7 @@
                 </ul>
             </li> <br>
             <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i
-                        class="menu-livicon" data-icon="desktop"></i><span class="menu-title"
+                        class="menu-livicon" data-icon="user"></i><span class="menu-title"
                         data-i18n="Dashboard">Students</span><span
                         class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
                 <ul class="menu-content">
@@ -84,8 +87,7 @@
                 </ul>
             </li> <br>
             <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i
-                        class="menu-livicon" data-icon="desktop"></i><span class="menu-title"
-                        data-i18n="Dashboard">Coaches</span><span
+                        class="fas fa-user-tie"></i><span class="menu-title" data-i18n="Dashboard">Coaches</span><span
                         class="badge badge-light-danger badge-pill badge-round float-right mr-2"></span></a>
                 <ul class="menu-content">
                     <li><a href={{ route('coach') }}><i class="bx bx-right-arrow-alt"></i><span class="menu-item"
@@ -99,4 +101,3 @@
         </ul>
     </div>
 </div>
-<!-- END: Main Menu-->
