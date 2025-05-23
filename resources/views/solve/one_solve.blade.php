@@ -9,12 +9,21 @@
     <title>Solution Details</title>
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
     <style>
+
+
+
     body {
         font-family: 'Segoe UI', sans-serif;
         background-color: #eef4f9;
         margin: 0;
         padding: 40px;
         direction: ltr;
+    }
+    .all {
+        margin-top: 400px;
+        margin-left: 200px;
+        margin-right: auto;
+        /* direction: ltr; */
     }
 
     .container {
@@ -172,88 +181,91 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="solve-header">
-            <!-- كلمة SOLVE على اليسار -->
-            <div class="solve-title">
-                SOLVE
-            </div>
-
-            <!-- كلمة State على اليمين -->
-            <div class="state-title">
-                State
-            </div>
-        </div>
-        <!-- التاريخ تحت كلمة SOLVE -->
-        <div style="text-align: right; color: #555; font-size: 12px; margin-bottom: 10px;">
-            <small>{{ $solve->created_at->format('d/m/Y') }}</small>
-        </div>
-        <!-- البادج تحت كلمة State وتقليل المسافة بينهما -->
-        <div style="text-align:left; font-size: 12px; color: #375ee0; margin-top: -30px;">
-            <small>
-                <div class="status-badge"
-                    style="padding: 8px 8px; border-radius: 12px; font-weight: bold; background-color: #f0f3ff; color: #375ee0; border: 1px solid #d4e1ff; display: inline-block ; ">
-                    @if($solve->status === 'accepted')
-                    Completed
-                    @elseif($solve->status === 'reject')
-                    Rejected
-                    @else
-                    Processing
-                    @endif
+    <div class="all">
+        <div class="container">
+            <div class="solve-header">
+                <!-- كلمة SOLVE على اليسار -->
+                <div class="solve-title">
+                    SOLVE
                 </div>
-            </small>
-        </div>
-        <div class="row-info-box">
-            <div class="info-block">
-                <div class="label">Issue</div>
-                <div class="value">{{ $solve->problem->title }}</div>
-            </div>
-            <div class="info-block">
-                <div class="label">Race name</div>
-                <div class="value">{{ $solve->user->team->name ?? '-' }}</div>
-            </div>
-            <div class="info-block">
-                <div class="label">From</div>
-                <div class="value">{{ $solve->user->name }}</div>
-            </div>
-            <div class="info-block">
-                <div class="label">Download Problem</div>
-                <div class="value">
-                    <a href="{{ route('problem.download',  $solve->problem->id) }}" class="download-btn" download>
-                        Download
-                    </a>
+
+                <!-- كلمة State على اليمين -->
+                <div class="state-title">
+                    State
                 </div>
             </div>
-        </div>
-
-        <div class="download-section">
-            <a href="{{ asset('storage/' . $solve->file) }}" download style="text-decoration: none;">
-                <div class="file-upload-label">
-                    <img src="https://cdn-icons-png.flaticon.com/512/724/724933.png" alt="download icon">
+            <!-- التاريخ تحت كلمة SOLVE -->
+            <div style="text-align: right; color: #555; font-size: 12px; margin-bottom: 10px;">
+                <small>{{ $solve->created_at->format('d/m/Y') }}</small>
+            </div>
+            <!-- البادج تحت كلمة State وتقليل المسافة بينهما -->
+            <div style="text-align:left; font-size: 12px; color: #375ee0; margin-top: -30px;">
+                <small>
+                    <div class="status-badge"
+                        style="padding: 8px 8px; border-radius: 12px; font-weight: bold; background-color: #f0f3ff; color: #375ee0; border: 1px solid #d4e1ff; display: inline-block ; ">
+                        @if($solve->status === 'accepted')
+                        Completed
+                        @elseif($solve->status === 'reject')
+                        Rejected
+                        @else
+                        Processing
+                        @endif
+                    </div>
+                </small>
+            </div>
+            <div class="row-info-box">
+                <div class="info-block">
+                    <div class="label">Issue</div>
+                    <div class="value">{{ $solve->problem->title }}</div>
                 </div>
-                <div style="font-weight: bold; color: #1c3d5a; margin-top: 10px;">
-                    Download Solve Problem
+                <div class="info-block">
+                    <div class="label">Race name</div>
+                    <div class="value">{{ $solve->user->team->name ?? '-' }}</div>
                 </div>
-            </a>
-        </div>
+                <div class="info-block">
+                    <div class="label">From</div>
+                    <div class="value">{{ $solve->user->name }}</div>
+                </div>
+                <div class="info-block">
+                    <div class="label">Download Problem</div>
+                    <div class="value">
+                        <a href="{{ route('problem.download',  $solve->problem->id) }}" class="download-btn" download>
+                            Download
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-        <div class="action-buttons">
-            <form action="{{ route('solves.updateStatus', $solve) }}" method="POST">
-                @csrf
-                <button name="status" value="reject" class="btn-reject">Rejected</button>
-            </form>
+            <div class="download-section">
+                <a href="{{ asset('storage/' . $solve->file) }}" download style="text-decoration: none;">
+                    <div class="file-upload-label">
+                        <img src="https://cdn-icons-png.flaticon.com/512/724/724933.png" alt="download icon">
+                    </div>
+                    <div style="font-weight: bold; color: #1c3d5a; margin-top: 10px;">
+                        Download Solve Problem
+                    </div>
+                </a>
+            </div>
 
-            <form action="{{ route('solves.updateStatus', $solve) }}" method="POST">
-                @csrf
-                <button name="status" value="process" class="btn-process">Processing</button>
-            </form>
+            <div class="action-buttons">
+                <form action="{{ route('solves.updateStatus', $solve) }}" method="POST">
+                    @csrf
+                    <button name="status" value="reject" class="btn-reject">Rejected</button>
+                </form>
 
-            <form action="{{ route('solves.updateStatus', $solve) }}" method="POST">
-                @csrf
-                <button name="status" value="accepted" class="btn-accept">Completed</button>
-            </form>
+                <form action="{{ route('solves.updateStatus', $solve) }}" method="POST">
+                    @csrf
+                    <button name="status" value="process" class="btn-process">Processing</button>
+                </form>
+
+                <form action="{{ route('solves.updateStatus', $solve) }}" method="POST">
+                    @csrf
+                    <button name="status" value="accepted" class="btn-accept">Completed</button>
+                </form>
+            </div>
         </div>
     </div>
+
 </body>
 
 </html>

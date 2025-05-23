@@ -19,8 +19,9 @@
     }
     .all {
         margin-top: 100px;
-        margin-right: 100px;
-        margin-left: auto;
+        margin-left: 200px;
+        margin-right: auto;
+        direction: ltr;
     }
 
     .header {

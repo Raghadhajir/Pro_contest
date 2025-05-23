@@ -1,6 +1,8 @@
 @include('panel.static.header')
 @include('panel.static.main')
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +15,12 @@
         font-family: Arial, sans-serif;
         background-color: #f0f6f6;
         padding: 20px;
+    }
+    .all {
+        margin-top: 100px;
+        margin-left: 200px;
+        margin-right: auto;
+        direction: ltr;
     }
 
     h2 {
@@ -86,44 +94,47 @@
 </head>
 
 <body>
-    <div class="container">
-        <h2>All Problems</h2>
-        <table class="table table-bordered ">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Problem Title</th>
-                    <th>Level</th>
-                    <th>Number of Solutions</th>
-                    <th>Download File</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($problems as $index => $problem)
-                <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $problem->title }}</td>
-                    <td>
-                        @if($problem->level === 'beginner')
-                        <span class="badge badge-success">Beginner</span>
-                        @elseif($problem->level === 'medium')
-                        <span class="badge badge-warning text-white">Medium</span>
-                        @elseif($problem->level === 'advanced')
-                        <span class="badge badge-danger">Advanced</span>
-                        @else
-                        <span class="badge badge-secondary">N/A</span>
-                        @endif
-                    </td>
-                    <td>{{ $problem->solves_count }}</td>
-                    <td>
-                        <a href="{{ route('problem.download', $problem->id) }}"
-                            class="btn btn-sm btn-outline-dark btn-download">Download</a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <div class="all">
+        <div class="container">
+            <h2>All Problems</h2>
+            <table class="table table-bordered ">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Problem Title</th>
+                        <th>Level</th>
+                        <th>Number of Solutions</th>
+                        <th>Download File</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($problems as $index => $problem)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $problem->title }}</td>
+                        <td>
+                            @if($problem->level === 'beginner')
+                            <span class="badge badge-success">Beginner</span>
+                            @elseif($problem->level === 'medium')
+                            <span class="badge badge-warning text-white">Medium</span>
+                            @elseif($problem->level === 'advanced')
+                            <span class="badge badge-danger">Advanced</span>
+                            @else
+                            <span class="badge badge-secondary">N/A</span>
+                            @endif
+                        </td>
+                        <td>{{ $problem->solves_count }}</td>
+                        <td>
+                            <a href="{{ route('problem.download', $problem->id) }}"
+                                class="btn btn-sm btn-outline-dark btn-download">Download</a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
+
 </body>
 
 </html>
