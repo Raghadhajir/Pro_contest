@@ -8,6 +8,12 @@ body {
     padding: 40px;
     padding-top: 80px;
 }
+.all {
+        margin-top: 50px;
+        margin-left: 200px;
+        margin-right: auto;
+        direction: ltr;
+    }
 
 .contest-card {
     background-color: #ffffff;
@@ -20,7 +26,8 @@ body {
 }
 
 .btn-add {
-    margin-top: 10px;
+    /* margin-top: 10px;
+    margin-bottom: 20px; */
     float: right;
     background-color: #1d3557;
     border: none;
@@ -163,89 +170,92 @@ body {
 </style>
 
 <body>
-    <div style=" justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        @if (!$contest || $contest->register_availability == 0)
-        <button style=" margin-right: 100px" class="btn btn-add" onclick="openModal()">ADD NEW RACE</button>
-        @endif
-        <h2 style="direction: ltr; padding-right: 970px;">Date of races</h2>
-
-    </div>
-    <div class="container">
-        <div class="contest-card">
-            @if($contest)
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>name</th>
-                        <th>Registration</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{ \Carbon\Carbon::parse($contest->date)->format('d M, Y') }}</td>
-                        <td>{{ $contest->name }}</td>
-                        <td>
-                            <span
-                                class="badge-status {{ $contest->register_availability ? 'status-available' : 'status-unavailable' }}">
-                                {{ $contest->register_availability ? 'available' : 'unavailable' }}
-                            </span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            @else
-            <p>No contests added yet.</p>
+    <div class="all">
+        <div style=" justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            @if (!$contest || $contest->register_availability == 0)
+            <button style=" margin-right: 100px" class="btn btn-add" onclick="openModal()">ADD NEW RACE</button>
             @endif
+            <h2 style="direction: ltr; padding-right: 970px;">Date of races</h2>
 
         </div>
-        <h2 style="direction: ltr; padding-right: 800px;">Participating teams:</h2>
+        <div class="container">
+            <div class="contest-card">
+                @if($contest)
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>name</th>
+                            <th>Registration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ \Carbon\Carbon::parse($contest->date)}}</td>
+                            <td>{{ $contest->name }}</td>
+                            <td>
+                                <span
+                                    class="badge-status {{ $contest->register_availability ? 'status-available' : 'status-unavailable' }}">
+                                    {{ $contest->register_availability ? 'available' : 'unavailable' }}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                @else
+                <p>No contests added yet.</p>
+                @endif
 
-        @forelse($teams as $team)
-        <div class="team-card">
-            <div class="team-info">
-                <div class="team-column">
-                    <p><span>Team name</span> {{ $team->name }}</p>
-                </div>
-                <div class="team-column">
-                    <p><span>Coach name</span> {{ $team->users->first()->name ?? 'N/A' }}</p>
-                </div>
-                <div class="team-column">
-                    <p><span>Members</span>
-                        @foreach($team->users as $user)
-                        {{ $user->name }}@if(!$loop->last), @endif
-                        @endforeach
-                    </p>
-                </div>
-                <div class="team-column">
-                    <p><span>Created date</span> <span class="date"
-                            style="color:gray;">{{ $team->created_at->format('d/m/Y') }}</span></p>
+            </div>
+            <h2 style="direction: ltr; padding-right: 800px;">Participating teams:</h2>
+
+            @forelse($teams as $team)
+            <div class="team-card">
+                <div class="team-info">
+                    <div class="team-column">
+                        <p><span>Team name</span> {{ $team->name }}</p>
+                    </div>
+                    <div class="team-column">
+                        <p><span>Coach name</span> {{ $team->users->first()->name ?? 'N/A' }}</p>
+                    </div>
+                    <div class="team-column">
+                        <p><span>Members</span>
+                            @foreach($team->users as $user)
+                            {{ $user->name }}@if(!$loop->last), @endif
+                            @endforeach
+                        </p>
+                    </div>
+                    <div class="team-column">
+                        <p><span>Created date</span> <span class="date"
+                                style="color:gray;">{{ $team->created_at }}</span></p>
+                    </div>
                 </div>
             </div>
+            @empty
+            <p>No teams registered.</p>
+            @endforelse
         </div>
-        @empty
-        <p>No teams registered.</p>
-        @endforelse
+
+        <!-- Modal -->
+        <div id="raceModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h3>Add new race </h3>
+                <form action="{{ route('contests.store') }}" method="POST">
+                    @csrf
+                    <input type="text" name="name" class="form-control" placeholder="Race Name" required>
+                    <input type="date" name="date" class="form-control" placeholder="Date" required>
+                    <select name="register_availability" class="form-control" required>
+                        <option value="" disabled selected>Registration</option>
+                        <option value="1">Available</option>
+                        <option value="0">Not Available</option>
+                    </select>
+                    <button type="submit" class="btn-submit">ADD NOW</button>
+                </form>
+            </div>
+        </div>
     </div>
 
-    <!-- Modal -->
-    <div id="raceModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h3>Add new race </h3>
-            <form action="{{ route('contests.store') }}" method="POST">
-                @csrf
-                <input type="text" name="name" class="form-control" placeholder="Race Name" required>
-                <input type="date" name="date" class="form-control" placeholder="Date" required>
-                <select name="register_availability" class="form-control" required>
-                    <option value="" disabled selected>Registration</option>
-                    <option value="1">Available</option>
-                    <option value="0">Not Available</option>
-                </select>
-                <button type="submit" class="btn-submit">ADD NOW</button>
-            </form>
-        </div>
-    </div>
 
     <script>
     function openModal() {

@@ -10,7 +10,11 @@ body {
 }
 
 .all {
-    margin: 100px;
+    margin-top: 100px;
+    margin-left: 200px;
+    margin-right: auto;
+    direction: ltr;
+
 }
 
 .content {

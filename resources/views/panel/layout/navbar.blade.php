@@ -6,9 +6,19 @@
 }
 
 .navbar-wrapper {
-    margin-right: -70 !important;
+    /* margin-right:  !important; */
     position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 }
+.new_div {
+    margin-left: 600px;
+}
+.user-nav {
+    margin-inline-end: 10px;
+}
+
 </style>
 <div class="header-navbar-shadow"></div>
 <nav class="header-navbar main-header-navbar navbar-expand-lg navbar navbar-with-menu fixed-top "
@@ -51,6 +61,7 @@
                     </ul>
 
                 </div>
+                <div class="new_div">
                 <ul class="nav navbar-nav mr-auto d-flex align-item-center">
                     <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link"
                             id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true"
@@ -245,6 +256,8 @@
                         </div>
                     </li>
                 </ul>
+                </div>
+
             </div>
         </div>
     </div>
