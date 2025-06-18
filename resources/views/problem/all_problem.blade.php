@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <title>All Problems</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
     <style>
     body {
         font-family: Arial, sans-serif;
@@ -97,7 +97,7 @@
 <body>
     <div class="all">
         <div class="container">
-            <h2>All Problems:</h2>
+            <h2 style="margin-right: 850px;">All Problems:</h2>
             <table class="table table-bordered ">
                 <thead>
                     <tr>
