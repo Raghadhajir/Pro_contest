@@ -2,17 +2,17 @@
 @include('panel.static.main')
 
 <style>
-body {
-    /* font-family: Arial, sans-serif;
-        background-color: #f1f9f9; */
-    display: flex;
-    /* min-height: 100vh; */
-}
+/* body {
+    font-family: Arial, sans-serif;
+        background-color: #f1f9f9;
+     display: flex;
+     min-height: 100vh;
+} */
 
 .all {
-    margin-top: 100px;
-    margin-left: 200px;
-    margin-right: auto;
+    margin-top: 80px;
+    padding-left: 270px !important;
+
     direction: ltr;
 
 }
@@ -98,7 +98,8 @@ body {
                     </p>
                 </div>
                 <div class="team-column">
-                    <p><span>Created date</span> <span class="date">{{ $team->created_at }}</span></p>
+                    <p><span>Created date</span> <span style="color:gray;" class="date">{{ $team->created_at }}</span>
+                    </p>
                 </div>
             </div>
         </div>

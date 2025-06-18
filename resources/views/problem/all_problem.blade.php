@@ -16,9 +16,10 @@
         background-color: #f0f6f6;
         padding: 20px;
     }
+
     .all {
-        margin-top: 100px;
-        margin-left: 200px;
+        margin-top: 80px;
+        margin-left: 230px;
         margin-right: auto;
         direction: ltr;
     }
@@ -96,7 +97,7 @@
 <body>
     <div class="all">
         <div class="container">
-            <h2>All Problems</h2>
+            <h2>All Problems:</h2>
             <table class="table table-bordered ">
                 <thead>
                     <tr>

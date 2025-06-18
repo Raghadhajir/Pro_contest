@@ -6,23 +6,33 @@ body {
     background-color: #f4f7fb;
     font-family: 'Segoe UI', sans-serif;
     padding: 40px;
-    padding-top: 80px;
+    padding-top: 50px;
 }
+
 .all {
-        margin-top: 50px;
-        margin-left: 200px;
-        margin-right: auto;
-        direction: ltr;
-    }
+    margin-top: 50px;
+    margin-left: 140px;
+    margin-right: auto;
+    direction: ltr;
+}
 
 .contest-card {
     background-color: #ffffff;
     border-radius: 16px;
-    padding: 25px;
+    padding-right: 220px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
     border: none;
     direction: ltr;
+    /* padding-right: 90px; */
+    justify-content: space-evenly;
+    /* width: 1000px; */
+}
+
+.table {
+    justify-content: space-evenly !important;
+    width: 1000px;
+
 }
 
 .btn-add {
@@ -71,6 +81,7 @@ body {
     padding: 20px;
     margin-bottom: 20px;
     direction: ltr;
+    padding-right: 90px;
 }
 
 .team-info {
@@ -175,7 +186,7 @@ body {
             @if (!$contest || $contest->register_availability == 0)
             <button style=" margin-right: 100px" class="btn btn-add" onclick="openModal()">ADD NEW RACE</button>
             @endif
-            <h2 style="direction: ltr; padding-right: 970px;">Date of races</h2>
+            <h2 style="direction: ltr; padding-right: 845px;">Date of races:</h2>
 
         </div>
         <div class="container">
@@ -185,13 +196,13 @@ body {
                     <thead>
                         <tr>
                             <th>Date</th>
-                            <th>name</th>
+                            <th>Name</th>
                             <th>Registration</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{ \Carbon\Carbon::parse($contest->date)}}</td>
+                            <td>{{($contest->date)}}</td>
                             <td>{{ $contest->name }}</td>
                             <td>
                                 <span
@@ -207,7 +218,7 @@ body {
                 @endif
 
             </div>
-            <h2 style="direction: ltr; padding-right: 800px;">Participating teams:</h2>
+            <h2 style="direction: ltr; padding-right: 740px;">Participating teams:</h2>
 
             @forelse($teams as $team)
             <div class="team-card">

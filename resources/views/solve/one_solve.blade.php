@@ -9,9 +9,6 @@
     <title>Solution Details</title>
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
     <style>
-
-
-
     body {
         font-family: 'Segoe UI', sans-serif;
         background-color: #eef4f9;
@@ -19,9 +16,10 @@
         padding: 40px;
         direction: ltr;
     }
+
     .all {
-        margin-top: 400px;
-        margin-left: 200px;
+        margin-top: 40px;
+        margin-left: 250px;
         margin-right: auto;
         /* direction: ltr; */
     }
