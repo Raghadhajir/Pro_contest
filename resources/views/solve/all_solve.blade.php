@@ -14,20 +14,21 @@
         padding: 40px;
         padding-top: 80px;
     }
+
     .all {
-        margin-top: 50px;
+        margin-top: 20px;
         margin-left: 200px;
         margin-right: auto;
-        direction: ltr;
+        direction: rtl;
     }
 
     h2 {
         color: #1d3557;
-        font-weight: 700;
-        margin-bottom: 30px;
-        margin-top: 0;
+        font-weight: 800;
+        /* margin-bottom: 30px;
+        margin-top: 0; */
         direction: rtl;
-        padding-right: 815px;
+        padding-right: 745px;
     }
 
     .filter-bar {
@@ -35,13 +36,18 @@
         flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
-        background-color: #ffffff;
+        /* background-color: #ffffff; */
         padding: 15px 20px;
         border-radius: 10px;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         margin-bottom: 25px;
         gap: 15px;
         direction: ltr;
+        margin-left: 20px;
+        width: 1040px;
+        /* border-width: 2px; */
+        border-bottom: #1d3557;
+        border-color: rgb(36, 124, 247);
     }
 
     .filter-bar .form-group {
@@ -65,10 +71,14 @@
         border-radius: 12px;
         overflow: hidden;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        padding-left: 50px;
+        /* left: 50px; */
+
+
     }
 
     thead {
-        background-color: #f1f4f8;
+        background-color: #ffffff;
     }
 
     th,
@@ -141,7 +151,7 @@
 
     .fa-filter {
         margin-right: 8px;
-        color: #4a5568;
+        color: rgb(78, 96, 126);
     }
 
     .badge-level {
@@ -171,13 +181,15 @@
 <body>
     <div class="all">
         <div class="container">
-            <h2>Solved Problems</h2>
+            <h2>:Solved Problems</h2>
 
             <!-- Filter Bar -->
             <form method="GET" action="{{ route('all_solve') }}" class="filter-bar">
-                <div class="d-flex flex-wrap align-items-center justify-content-between w-100" style="gap: 15px;">
+                <div class="d-flex flex-wrap align-items-center justify-content-between w-100"
+                    style="gap: 15px;border-color:#1d3557">
                     <div class="d-flex align-items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#4a5568" viewBox="0 0 24 24">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#4a5568"
+                            viewBox="0 0 24 24">
                             <path
                                 d="M3 4a1 1 0 0 1 .8-.98l16-2A1 1 0 0 1 21 2v2a1 1 0 0 1-.293.707L14 12v8a1 1 0 0 1-2 0v-8l-6.707-7.293A1 1 0 0 1 5 4V2a1 1 0 0 1 .8-.98z" />
                         </svg>
@@ -197,11 +209,14 @@
                         <label class="mb-0" style="font-size: 0.9rem;">Status</label>
                         <select name="status" class="form-control">
                             <option value="">All</option>
-                            <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
+                            <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending
+                            </option>
                             <option value="accepted" {{ request('status') == 'accepted' ? 'selected' : '' }}>Accepted
                             </option>
-                            <option value="reject" {{ request('status') == 'reject' ? 'selected' : '' }}>Rejected</option>
-                            <option value="processing" {{ request('status') == 'processing' ? 'selected' : '' }}>Processing
+                            <option value="reject" {{ request('status') == 'reject' ? 'selected' : '' }}>Rejected
+                            </option>
+                            <option value="processing" {{ request('status') == 'processing' ? 'selected' : '' }}>
+                                Processing
                             </option>
                         </select>
                     </div>
@@ -216,7 +231,7 @@
             </form>
 
             <!-- Table -->
-            <table class="table">
+            <table class="table" style="width:1040px">
                 <thead>
                     <tr>
                         <th>Action</th>
@@ -297,5 +312,6 @@
     </div>
 
 </body>
+
 </html>
 @include('panel.static.footer')

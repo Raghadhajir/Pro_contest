@@ -1,4 +1,9 @@
 <!-- BEGIN: Main Menu-->
+<style>
+.a {
+    direction: ltr !important;
+}
+</style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true"
     style="left: 0%;direction: ltr;">
@@ -19,7 +24,7 @@
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation"
             data-icon-style="lines">
-            <li class=" navigation-header"><span>Dashboard</span>
+            <li class="navigation-header"><span class="a">Dashboard</span>
             </li>
             <li class=" nav-item"><a href="../../../html/rtl/vertical-menu-template-semi-dark/index.html"><i
                         class="menu-livicon" data-icon="home"></i><span class="menu-title"

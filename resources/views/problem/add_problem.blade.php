@@ -2,30 +2,27 @@
 @include('panel.static.main')
 <div class="problem-form-wrapper">
     <style>
-    .all {
-        margin-top: 50px;
-        margin-left: 600px;
-        margin-right: auto;
-        direction: ltr;
-    }
-
     .problem-form-wrapper {
         background-color: #f6f8fa;
         font-family: Arial, sans-serif;
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        padding-top: 50px;
-        min-height: 100vh;
+        padding-top: 75px;
+        padding-left: 150px;
+        height: 7px !important;
+
     }
 
     .problem-form-wrapper .form-container {
         background-color: #fff;
+
         padding: 40px;
         border-radius: 16px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         width: 100%;
         max-width: 500px;
+        direction: ltr;
     }
 
     .problem-form-wrapper h3 {
@@ -92,54 +89,55 @@
         background-color: #00bfa6;
     }
     </style>
-    <div class="all">
-        <div class="form-container">
-            <h3>:Add new problem </h3>
 
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <strong>Error!</strong>
-                <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
+    <div class="form-container">
+        <h3>Add new problem :</h3>
 
-            <form action="{{ route('store_problem') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-
-                <div class="form-group">
-                    <input type="text" name="title" class="form-control" placeholder="Problem name" required>
-                </div>
-
-                <div class="form-group">
-                    <textarea name="description" class="form-control" rows="3" placeholder="Problem description"
-                        required></textarea>
-                </div>
-                <div class="form-group">
-                    <select name="level" class="form-control" required>
-                        <option value="beginner" selected>Beginner</option>
-                        <option value="medium">Medium</option>
-                        <option value="advanced">Advanced</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Problem file</label>
-                    <label for="file-upload" class="file-upload-label">
-                        <img src="https://cdn-icons-png.flaticon.com/512/724/724933.png" alt="upload icon">
-                    </label>
-                    <input id="file-upload" type="file" name="file" class="custom-file-input" required>
-                </div>
-
-
-
-                <button type="submit" class="btn-submit">ADD NOW</button>
-            </form>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>Error!</strong>
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
+        @endif
+
+        <form action="{{ route('store_problem') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+
+            <div class="form-group">
+                <input type="text" name="title" class="form-control" placeholder="Problem name" required>
+            </div>
+
+            <div class="form-group">
+                <textarea name="description" class="form-control" rows="2" placeholder="Problem description"
+                    required></textarea>
+            </div>
+
+            <div class="form-group">
+                Problem file: &nbsp; &nbsp; &nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="file-upload" class="file-upload-label">
+                    <img src="https://cdn-icons-png.flaticon.com/512/724/724933.png" alt="upload icon">
+                </label>
+                <input id="file-upload" type="file" name="file" class="custom-file-input" required>
+            </div>
+
+            <div class="form-group">
+                <select name="level" class="form-control" required>
+                    <option value="beginner" selected>Beginner</option>
+                    <option value="medium">Medium</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-submit">ADD NOW</button>
+        </form>
     </div>
 </div>
-
-
 @include('panel.static.footer')

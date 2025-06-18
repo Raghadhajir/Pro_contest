@@ -50,7 +50,7 @@ use App\Http\Controllers\ContestController;
 //Auth::routes();
 
 
-Route::get('/test', [DashboardController::class, 'index'])->middleware('admin')->name('Admin-Panel');
+Route::get('/test', [UserController::class, 'index'])->middleware('admin')->name('Admin-Panel');
 Route::get('/404', [DashboardController::class, 'notFound'])->name('404');
 Route::get('/500', [DashboardController::class, 'serverError'])->name('404');
 
